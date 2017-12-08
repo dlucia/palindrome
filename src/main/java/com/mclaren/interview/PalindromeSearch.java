@@ -7,7 +7,7 @@ import static java.util.Collections.emptyList;
 
 public class PalindromeSearch
 {
-  public List<Palindrome> firstLongestThreeIn(String input)
+  public List<Palindrome> allIn(String input)
   {
     if (input == null || input.isEmpty())
       return emptyList();
