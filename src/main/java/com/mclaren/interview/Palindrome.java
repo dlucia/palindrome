@@ -8,7 +8,7 @@ public class Palindrome
   private final int startIndex;
   private final int length;
 
-  public Palindrome(String value, int startIndex, int length)
+  Palindrome(String value, int startIndex, int length)
   {
     this.value = value;
     this.startIndex = startIndex;

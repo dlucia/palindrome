@@ -14,16 +14,16 @@ public class PalindromeSearchTest
   {
     PalindromeSearch search = new PalindromeSearch();
 
-    assertThat(search.firstThreeIn(""), is(emptyList()));
-    assertThat(search.firstThreeIn(null), is(emptyList()));
+    assertThat(search.firstLongestThreeIn(""), is(emptyList()));
+    assertThat(search.firstLongestThreeIn(null), is(emptyList()));
   }
 
   @Test
-  public void sizeOneInputIsAPalindrome()
+  public void lengthOneInputIsAPalindrome()
   {
     PalindromeSearch search = new PalindromeSearch();
 
-    assertThat(search.firstThreeIn("a"), is(singletonList(new Palindrome("a", 0, 1))));
-    assertThat(search.firstThreeIn("b"), is(singletonList(new Palindrome("b", 0, 1))));
+    assertThat(search.firstLongestThreeIn("a"), is(singletonList(new Palindrome("a", 0, 1))));
+    assertThat(search.firstLongestThreeIn("b"), is(singletonList(new Palindrome("b", 0, 1))));
   }
 }
