@@ -35,4 +35,10 @@ public class ManacherInputConverterTest
     assertTrue("Length has to be odd", actual.length % 2 != 0);
     assertThat(actual, is(new String[] { SEPARATOR, "a", SEPARATOR, "b", SEPARATOR, "c", SEPARATOR }));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void inputContainsSeparator()
+  {
+    adapter.convert("a|c");
+  }
 }

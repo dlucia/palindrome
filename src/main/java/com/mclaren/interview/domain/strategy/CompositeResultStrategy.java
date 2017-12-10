@@ -6,19 +6,19 @@ import java.util.List;
 
 public class CompositeResultStrategy implements ResultStrategy
 {
-  private final List<ResultStrategy> resultStrategies;
+  private final ResultStrategy orderedStrategy;
+  private final ResultStrategy limitedStrategy;
 
-  public CompositeResultStrategy(List<ResultStrategy> resultStrategies)
+  public CompositeResultStrategy(ResultStrategy orderedStrategy, ResultStrategy limitedStrategy)
   {
-    this.resultStrategies = resultStrategies;
+    this.orderedStrategy = orderedStrategy;
+    this.limitedStrategy = limitedStrategy;
   }
 
   @Override public List<Palindrome> applyOn(List<Palindrome> palindromes)
   {
-    List<Palindrome> list = palindromes;
-    for (ResultStrategy resultStrategy : resultStrategies)
-      list = resultStrategy.applyOn(list);
+    List<Palindrome> ordered = orderedStrategy.applyOn(palindromes);
 
-    return list;
+    return limitedStrategy.applyOn(ordered);
   }
 }

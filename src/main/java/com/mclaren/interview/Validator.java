@@ -1,4 +1,4 @@
-package com.mclaren.interview.app;
+package com.mclaren.interview;
 
 public interface Validator<VALUE>
 {

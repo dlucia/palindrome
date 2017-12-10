@@ -1,7 +1,7 @@
 package com.mclaren.interview.domain;
 
+import com.mclaren.interview.domain.filter.Filter;
 import com.mclaren.interview.domain.model.Palindrome;
-import com.mclaren.interview.domain.PalindromeSearch;
 import com.mclaren.interview.domain.search.LongestPalindromes;
 import com.mclaren.interview.domain.strategy.ResultStrategy;
 import org.jmock.Expectations;
@@ -11,9 +11,7 @@ import org.junit.*;
 
 import static com.mclaren.interview.fixture.PalindromeBuilder.aPalindrome;
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
@@ -30,34 +28,32 @@ public class PalindromeSearchTest
   private LongestPalindromes longestPalindrome;
   @Mock
   private ResultStrategy resultStrategy;
+  @Mock
+  private Filter uniqueFilter;
 
   private PalindromeSearch search;
 
   @Before
   public void setUp()
   {
-    search = new PalindromeSearch(longestPalindrome, resultStrategy);
+    search = new PalindromeSearch(longestPalindrome, uniqueFilter, resultStrategy);
   }
 
   @Test
-  public void noneForEmptyInput()
-  {
-    assertThat(search.forInput(""), is(emptyList()));
-    assertThat(search.forInput(null), is(emptyList()));
-  }
-
-  @Test
-  public void foundPalindromesAndFiltrated()
+  public void foundPalindromes()
   {
     context.checking(new Expectations()
     {{
       allowing(longestPalindrome).in(STRING);
       will(returnValue(asList(palindrome1, palindrome2, palindrome3)));
 
-      allowing(resultStrategy).applyOn(asList(palindrome1, palindrome2, palindrome3));
+      allowing(uniqueFilter).filter(asList(palindrome1, palindrome2, palindrome3));
+      will(returnValue(asList(palindrome1, palindrome2)));
+
+      allowing(resultStrategy).applyOn(asList(palindrome1, palindrome2));
       will(returnValue(singletonList(palindrome2)));
     }});
 
-    assertThat(search.forInput(STRING), contains(palindrome2));
+    assertThat(search.firstThreeFor(STRING), contains(palindrome2));
   }
 }

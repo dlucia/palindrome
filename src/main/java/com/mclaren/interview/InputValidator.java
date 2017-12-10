@@ -1,4 +1,4 @@
-package com.mclaren.interview.app;
+package com.mclaren.interview;
 
 public class InputValidator implements Validator<String>
 {

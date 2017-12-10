@@ -1,32 +1,32 @@
 package com.mclaren.interview.domain;
 
+import com.mclaren.interview.domain.filter.Filter;
 import com.mclaren.interview.domain.model.Palindrome;
 import com.mclaren.interview.domain.search.LongestPalindromes;
-import com.mclaren.interview.domain.strategy.LimitedResultStrategy;
 import com.mclaren.interview.domain.strategy.ResultStrategy;
 
 import java.util.List;
 
-import static java.util.Collections.emptyList;
-
 public class PalindromeSearch
 {
-  private final LongestPalindromes longestPalindromes;
-  private final ResultStrategy strategy;
+  private final LongestPalindromes longest;
+  private final Filter filter;
+  private final ResultStrategy resultStrategy;
 
-  public PalindromeSearch(LongestPalindromes longestPalindrome, ResultStrategy strategy)
+  public PalindromeSearch(LongestPalindromes longestPalindrome,
+                          Filter filter,
+                          ResultStrategy resultStrategy)
   {
-    this.longestPalindromes = longestPalindrome;
-    this.strategy = strategy;
+    this.longest = longestPalindrome;
+    this.filter = filter;
+    this.resultStrategy = resultStrategy;
   }
 
-  public List<Palindrome> forInput(String input)
+  public List<Palindrome> firstThreeFor(String input)
   {
-    if (input == null || input.isEmpty())
-      return emptyList();
+    List<Palindrome> found = longest.in(input);
+    List<Palindrome> filtered = filter.filter(found);
 
-    List<Palindrome> palindromes = strategy.applyOn(longestPalindromes.in(input));
-
-    return new LimitedResultStrategy(3).applyOn(palindromes);
+    return resultStrategy.applyOn(filtered);
   }
 }
