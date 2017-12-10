@@ -10,22 +10,22 @@ import java.util.List;
 public class PalindromeSearch
 {
   private final LongestPalindromes longest;
-  private final Filter filter;
+  private final Filter uniqueFilter;
   private final ResultStrategy resultStrategy;
 
   public PalindromeSearch(LongestPalindromes longestPalindrome,
-                          Filter filter,
+                          Filter uniqueFilter,
                           ResultStrategy resultStrategy)
   {
     this.longest = longestPalindrome;
-    this.filter = filter;
+    this.uniqueFilter = uniqueFilter;
     this.resultStrategy = resultStrategy;
   }
 
   public List<Palindrome> firstThreeFor(String input)
   {
     List<Palindrome> found = longest.in(input);
-    List<Palindrome> filtered = filter.filter(found);
+    List<Palindrome> filtered = uniqueFilter.filter(found);
 
     return resultStrategy.applyOn(filtered);
   }
