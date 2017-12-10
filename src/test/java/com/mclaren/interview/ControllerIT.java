@@ -24,7 +24,7 @@ public class ControllerIT
   @Test
   public void acceptanceTest()
   {
-    List<PalindromeResponse> response = controller.execute("sqrrqabccbatudefggfedvwhijkllkjihxymnnmzpop");
+    List<PalindromeResponse> response = controller.search("sqrrqabccbatudefggfedvwhijkllkjihxymnnmzpop");
 
     assertThat(response, contains(new PalindromeResponse("hijkllkjih", 23, 10),
                                   new PalindromeResponse("defggfed", 13, 8),
@@ -34,12 +34,12 @@ public class ControllerIT
   @Test(expected = IllegalArgumentException.class)
   public void emptyInput()
   {
-    controller.execute("");
+    controller.search("");
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void nullInput()
   {
-    controller.execute(null);
+    controller.search(null);
   }
 }
