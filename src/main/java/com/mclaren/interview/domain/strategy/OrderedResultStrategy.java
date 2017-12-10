@@ -4,6 +4,9 @@ import com.mclaren.interview.domain.model.Palindrome;
 
 import java.util.List;
 
+import static com.mclaren.interview.domain.strategy.OrderedResultStrategy.SortingOrder.ASCENDING;
+import static com.mclaren.interview.domain.strategy.OrderedResultStrategy.SortingOrder.NONE;
+
 public class OrderedResultStrategy implements ResultStrategy
 {
   private SortingOrder sortingOrder;
@@ -15,7 +18,7 @@ public class OrderedResultStrategy implements ResultStrategy
 
   @Override public List<Palindrome> applyOn(List<Palindrome> palindromes)
   {
-    if (!sortingOrder.equals(SortingOrder.NONE))
+    if (!sortingOrder.equals(NONE))
       sort(palindromes);
 
     return palindromes;
@@ -23,7 +26,7 @@ public class OrderedResultStrategy implements ResultStrategy
 
   private void sort(List<Palindrome> palindromes)
   {
-    if (sortingOrder.equals(SortingOrder.ASCENDING))
+    if (sortingOrder.equals(ASCENDING))
       palindromes.sort((o1, o2) -> {
         if (o1.length() == o2.length())
           return 0;

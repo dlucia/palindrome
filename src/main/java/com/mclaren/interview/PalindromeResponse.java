@@ -8,7 +8,7 @@ public class PalindromeResponse
   private int index;
   private int length;
 
-  public PalindromeResponse(String text, int index, int length)
+  PalindromeResponse(String text, int index, int length)
   {
     this.text = text;
     this.index = index;
