@@ -1,7 +1,5 @@
 package com.mclaren.interview.palindrome.domain.search.manacher;
 
-import static java.lang.String.format;
-
 class ManacherInputConverter
 {
   public String[] convert(String input)

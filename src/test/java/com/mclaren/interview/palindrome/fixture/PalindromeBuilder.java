@@ -8,9 +8,7 @@ public class PalindromeBuilder
   private int startIndex = 0;
   private int endIndex = 0;
 
-  private PalindromeBuilder()
-  {
-  }
+  private PalindromeBuilder() {}
 
   public static PalindromeBuilder aPalindrome()
   {

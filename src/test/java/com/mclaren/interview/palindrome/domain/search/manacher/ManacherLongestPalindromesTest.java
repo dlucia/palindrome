@@ -6,6 +6,7 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
@@ -23,7 +24,7 @@ public class ManacherLongestPalindromesTest
   @Test
   public void lengthOneInputIsAPalindrome()
   {
-    assertThat(search.in("a"), Matchers.contains(new Palindrome("a", 0, 0)));
+    assertThat(search.in("a"), contains(new Palindrome("a", 0, 0)));
     assertThat(search.in("b"), contains(new Palindrome("b", 0, 0)));
   }
 

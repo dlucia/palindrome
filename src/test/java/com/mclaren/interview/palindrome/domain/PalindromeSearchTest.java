@@ -10,6 +10,7 @@ import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.*;
 
+import static com.mclaren.interview.palindrome.fixture.PalindromeBuilder.*;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.contains;
@@ -18,9 +19,9 @@ import static org.junit.Assert.assertThat;
 public class PalindromeSearchTest
 {
   private static final String STRING = "aString";
-  private final Palindrome palindrome1 = PalindromeBuilder.aPalindrome().withValue("a").build();
-  private final Palindrome palindrome2 = PalindromeBuilder.aPalindrome().withValue("b").build();
-  private final Palindrome palindrome3 = PalindromeBuilder.aPalindrome().withValue("c").build();
+  private final Palindrome palindrome1 = aPalindrome().withValue("a").build();
+  private final Palindrome palindrome2 = aPalindrome().withValue("b").build();
+  private final Palindrome palindrome3 = aPalindrome().withValue("c").build();
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();

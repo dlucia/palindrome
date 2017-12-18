@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 
 public class UniquePalindromeFilterTest
 {
-
   private ResultStrategy strategy;
 
   @Before
